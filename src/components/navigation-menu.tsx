@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Heart, Image as ImageIcon, MessageSquare, CalendarDays, ListMusic, Gamepad2, Settings } from 'lucide-react';
+import { Heart, MessageSquare, CalendarDays, ListMusic, Gamepad2, Settings } from 'lucide-react'; // Removed ImageIcon
 import {
   SidebarHeader,
   SidebarContent,
@@ -16,8 +16,8 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
 const navItems = [
-  { href: '/', label: 'Recuerdos', icon: Heart },
-  { href: '/photos', label: 'Fotos', icon: ImageIcon },
+  { href: '/', label: 'Inicio', icon: Heart }, // Changed label from Recuerdos to Inicio
+  // { href: '/photos', label: 'Fotos', icon: ImageIcon }, // Removed Photos item
   { href: '/messages', label: 'Mensajes', icon: MessageSquare },
   { href: '/dates', label: 'Calendario', icon: CalendarDays },
   { href: '/playlists', label: 'Playlists', icon: ListMusic },

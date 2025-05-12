@@ -1,19 +1,18 @@
 import MemoryCarousel from '@/components/memory-carousel';
-import { Sparkles } from 'lucide-react';
+// Removed Sparkles import as it's no longer used in the title
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-full py-8 px-4">
-      <header className="mb-12 text-center">
-        <h1 className="text-5xl font-bold text-primary mb-2 flex items-center justify-center gap-3">
-          <Sparkles className="w-10 h-10" />
-          Nuestros Momentos Preciados
-          <Sparkles className="w-10 h-10" />
+    <div className="flex flex-col items-center justify-start min-h-full py-8 px-4 space-y-12"> {/* Changed justify-center to justify-start and added space-y */}
+      <header className="w-full text-center"> {/* Made header full width */}
+        <h1 className="text-6xl font-bold text-primary mb-4"> {/* Increased font size and margin */}
+          Emi y Mathi
         </h1>
         <p className="text-xl text-muted-foreground">
-          Una colección de recuerdos que cuentan nuestra hermosa historia.
+          Un lugar especial para nuestros recuerdos y momentos compartidos.
         </p>
       </header>
+      {/* Memory carousel is now below the main title */}
       <MemoryCarousel />
     </div>
   );
