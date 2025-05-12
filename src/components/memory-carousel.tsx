@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -21,7 +22,7 @@ interface Memory {
 const firstMemory: Memory = {
   id: 1,
   title: "Nuestro Primer Contacto", // Updated title
-  message: "Recuerdas ese 7 de mayo del 2024 cuando fue la primera vez que ambos supimos de la existencia de cada uno? donde yo daba todo por avanzar la conversacion y tu lo hacias mas dificil", // Updated message
+  message: "Recuerdas ese 7 de mayo del 2024 cuando fue la primera vez que ambos supimos de la existencia de cada uno? donde yo daba todo por avanzar la conversacion y tu lo hacias mas dificil? Pues ese inicio tan dificil tuvo una de las mejores historias en mi vida", // Updated message
   image: "https://picsum.photos/seed/cita1/600/400", // Updated seed for potentially different image
   date: "2024-05-07", // Updated date to match the new message
   imageHint: "chat conversacion", // Updated hint
