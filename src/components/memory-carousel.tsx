@@ -21,10 +21,10 @@ interface Memory {
 const firstMemory: Memory = {
   id: 1,
   title: "Nuestro Primer Contacto", // Updated title
-  message: "¿Recuerdas ese pequeño café? Se sintió como magia desde el principio. El ambiente acogedor, el aroma del café y tus ojos brillantes al otro lado de la mesa lo hicieron inolvidable.",
+  message: "Recuerdas ese 7 de mayo del 2024 cuando fue la primera vez que ambos supimos de la existencia de cada uno? donde yo daba todo por avanzar la conversacion y tu lo hacias mas dificil", // Updated message
   image: "https://picsum.photos/seed/cita1/600/400", // Updated seed for potentially different image
-  date: "2022-03-15",
-  imageHint: "pareja cafe",
+  date: "2024-05-07", // Updated date to match the new message
+  imageHint: "chat conversacion", // Updated hint
 };
 
 // Define a placeholder for censored memories
