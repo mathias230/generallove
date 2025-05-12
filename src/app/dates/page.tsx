@@ -4,8 +4,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { CalendarDays, Gift, Star } from 'lucide-react';
-import { format } from 'date-fns';
+import { CalendarDays, Gift, Star, Cake } from 'lucide-react'; // Added Cake icon
+import { format, setDate, setMonth } from 'date-fns'; // Added setDate, setMonth
 import { es } from 'date-fns/locale'; // Import Spanish locale
 
 interface SpecialDate {
@@ -18,21 +18,51 @@ interface SpecialDate {
 // Helper to get current year for dynamic dates
 const getCurrentYear = () => new Date().getFullYear();
 
-// Keep this outside the component if it doesn't rely on component props/state
+// Updated function to generate the new set of special dates
 const getDynamicSpecialDates = (): SpecialDate[] => {
   const year = getCurrentYear();
-  return [
-    { date: `${year}-03-15`, title: "Aniversario Primera Cita", description: `¡Celebrando el día que comenzó nuestro viaje en ${year}!`, icon: Star },
-    { date: `${year}-08-22`, title: "Cumpleaños de mi Amor", description: `¡Un día especial para mi persona especial en ${year}!`, icon: Gift },
-    { date: `${year}-12-25`, title: "Navidad Juntos", description: `Fiestas acogedoras y cálidos recuerdos en ${year}.`, icon: Gift },
-    { date: `${year+1}-01-01`, title: "Día de Año Nuevo", description: "¡Primer día de un nuevo año juntos!", icon: Star },
-    // Ensure date format is YYYY-MM-DD for consistency
-  ];
+  const specialDates: SpecialDate[] = [];
+
+  // 1. Monthly Anniversaries on the 19th
+  for (let month = 0; month < 12; month++) {
+    // Ensure date exists (handles Feb 29 edge case implicitly)
+    const date = setDate(setMonth(new Date(year, 0, 1), month), 19);
+    if (date.getMonth() === month) { // Check if setting the date didn't roll over the month
+        specialDates.push({
+            date: format(date, 'yyyy-MM-dd'), // Format as YYYY-MM-DD
+            title: "Aniversario Mensual",
+            description: `¡Celebrando nuestro amor este mes en ${year}!`,
+            icon: Star
+        });
+    }
+  }
+
+  // 2. Cumple de mi Emi on August 4th
+  specialDates.push({
+    date: `${year}-08-04`,
+    title: "Cumple de mi Emi",
+    description: `¡Feliz cumpleaños a mi persona especial, Emi, en ${year}!`,
+    icon: Cake // Using Cake icon for birthdays
+  });
+
+  // 3. Cumple de Mathi on February 28th
+  // Check for leap year for Feb 29, but requirement is Feb 28
+   const mathiBday = new Date(year, 1, 28); // Month is 0-indexed, so 1 is February
+   specialDates.push({
+     date: format(mathiBday, 'yyyy-MM-dd'),
+     title: "Cumple de Mathi",
+     description: `¡Celebrando a Mathi en su día especial en ${year}!`,
+     icon: Gift // Using Gift icon for Mathi's birthday
+   });
+
+
+  // Ensure date format is YYYY-MM-DD for consistency - handled by format() above
+  return specialDates;
 };
 
 
 export default function DatesPage() {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDateState] = useState<Date | undefined>(new Date()); // Renamed setDate to avoid conflict
   const [selectedEvents, setSelectedEvents] = useState<SpecialDate[]>([]);
 
   // Use useMemo to calculate special dates only once
@@ -42,7 +72,6 @@ export default function DatesPage() {
   const specialDaysModifier = useMemo(() => {
     return allSpecialDates.map(d => {
         // Parse YYYY-MM-DD string correctly into a local Date object
-        // The calendar typically works with local dates
         const [year, month, day] = d.date.split('-').map(Number);
         // Month is 0-indexed in Date constructor
         return new Date(year, month - 1, day);
@@ -61,7 +90,14 @@ export default function DatesPage() {
          // Parse event date string (YYYY-MM-DD)
          const [eventYear, eventMonth, eventDay] = event.date.split('-').map(Number);
          // Compare parts (month is 1-based in string, needs to be 0-based for comparison)
-         return eventYear === selectedYear && (eventMonth - 1) === selectedMonth && eventDay === selectedDay;
+         // Only compare day and month for recurring events, or full date for specific year events
+         // Let's filter based on the exact date string match for simplicity with current data structure
+          const eventDateStr = format(new Date(eventYear, eventMonth - 1, eventDay), 'yyyy-MM-dd');
+          const selectedDateStr = format(date, 'yyyy-MM-dd');
+          return eventDateStr === selectedDateStr;
+
+         // Alternative for just month/day matching (would require changes to how dates are generated/stored)
+         // return (eventMonth - 1) === selectedMonth && eventDay === selectedDay;
       });
       setSelectedEvents(events);
     } else {
@@ -81,19 +117,18 @@ export default function DatesPage() {
 
       <div className="flex flex-col lg:flex-row gap-8 items-start justify-center">
         <Card className="shadow-lg w-full lg:max-w-md">
-          <CardContent className="p-2 sm:p-4">
+          <CardContent className="p-2 sm:p-4 flex justify-center"> {/* Added flex and justify-center */}
             <Calendar
               mode="single"
               selected={date}
-              onSelect={setDate}
-              className="rounded-md border bg-card w-full"
+              onSelect={setDateState} // Use renamed state setter
+              className="rounded-md border bg-card" // Removed w-full
               locale={es} // Set locale to Spanish
               modifiers={{
-                // Use the memoized modifier calculation
                 special: specialDaysModifier
               }}
               modifiersClassNames={{
-                special: 'bg-accent text-accent-foreground rounded-full'
+                special: 'bg-accent text-accent-foreground rounded-full font-bold' // Made special dates bold
               }}
               // fixedWeeks // Uncomment if height jumps on month change are an issue
             />
