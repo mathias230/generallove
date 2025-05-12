@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Heart, MessageSquare, CalendarDays, Gamepad2, Settings, Gift } from 'lucide-react'; // Added Gift icon
+import { Heart, MessageSquare, CalendarDays, Gamepad2, Gift } from 'lucide-react'; // Removed Settings icon
 import {
   SidebarHeader,
   SidebarContent,
@@ -14,13 +14,14 @@ import {
   SidebarTrigger
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+// Removed Button import as it's no longer needed for settings
+import { ThemeToggle } from '@/components/theme-toggle'; // Import ThemeToggle
 
 const navItems = [
   { href: '/', label: 'Inicio', icon: Heart },
   { href: '/messages', label: 'Mensajes', icon: MessageSquare },
   { href: '/dates', label: 'Calendario', icon: CalendarDays },
-  { href: '/anniversaries', label: 'Aniversarios', icon: Gift }, // Added Anniversaries link
+  { href: '/anniversaries', label: 'Aniversarios', icon: Gift },
   { href: '/minigame', label: 'Juego', icon: Gamepad2 },
 ];
 
@@ -62,13 +63,10 @@ export default function NavigationMenu() {
           ))}
         </SidebarMenu>
       </SidebarContent>
-      <SidebarFooter className="p-4 border-t border-sidebar-border">
-         <Button variant="ghost" className="w-full justify-start text-base py-3 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-            <Settings className="w-5 h-5 mr-3" />
-            <span>Ajustes</span>
-        </Button>
+      <SidebarFooter className="p-4 border-t border-sidebar-border flex justify-center items-center">
+         {/* Removed Settings Button */}
+         <ThemeToggle /> {/* Added ThemeToggle button */}
       </SidebarFooter>
     </>
   );
 }
-

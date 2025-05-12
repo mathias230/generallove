@@ -4,12 +4,7 @@ import './globals.css';
 import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar';
 import NavigationMenu from '@/components/navigation-menu';
 import { Toaster } from "@/components/ui/toaster";
-
-// Correct usage: GeistSans is an object containing className and variable
-// const geistSans = GeistSans({ // This is incorrect usage for the 'geist' package
-//   variable: '--font-geist-sans',
-//   subsets: ['latin'],
-// });
+import { ThemeProvider } from "@/components/theme-provider"; // Import ThemeProvider
 
 export const metadata: Metadata = {
   title: 'Amor Eterno',
@@ -22,20 +17,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      {/* Apply the font class name and variable */}
+    <html lang="es" suppressHydrationWarning> {/* Add suppressHydrationWarning for next-themes */}
       <body className={`${GeistSans.variable} ${GeistSans.className} font-sans antialiased`}>
-        <SidebarProvider defaultOpen={true}>
-          <Sidebar collapsible="icon" className="shadow-lg">
-            <NavigationMenu />
-          </Sidebar>
-          <SidebarInset>
-            <main className="p-4 md:p-6 lg:p-8 flex-grow">
-              {children}
-            </main>
-          </SidebarInset>
-        </SidebarProvider>
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SidebarProvider defaultOpen={true}>
+            <Sidebar collapsible="icon" className="shadow-lg">
+              <NavigationMenu />
+            </Sidebar>
+            <SidebarInset>
+              <main className="p-4 md:p-6 lg:p-8 flex-grow">
+                {children}
+              </main>
+            </SidebarInset>
+          </SidebarProvider>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
