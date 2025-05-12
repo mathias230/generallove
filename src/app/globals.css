@@ -2,9 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* Removed font-family definition as it's handled by GeistSans.className in layout.tsx */
+/* body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-}
+} */
 
 @layer base {
   :root {
