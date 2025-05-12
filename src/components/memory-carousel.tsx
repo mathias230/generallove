@@ -20,7 +20,7 @@ interface Memory {
 // Define the first real memory
 const firstMemory: Memory = {
   id: 1,
-  title: "Nuestra Primera Cita",
+  title: "Nuestro Primer Contacto", // Updated title
   message: "¿Recuerdas ese pequeño café? Se sintió como magia desde el principio. El ambiente acogedor, el aroma del café y tus ojos brillantes al otro lado de la mesa lo hicieron inolvidable.",
   image: "https://picsum.photos/seed/cita1/600/400", // Updated seed for potentially different image
   date: "2022-03-15",
