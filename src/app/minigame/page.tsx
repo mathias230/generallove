@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from 'react';
@@ -17,79 +16,88 @@ const LoveClickerGame = () => {
   const [highScore, setHighScore] = useState(0);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [clicks, setClicks] = useState<{ id: number; x: number; y: number }[]>([]);
-  const loveButtonRef = useRef<HTMLButtonElement>(null); // Ref for the button
+  const loveButtonRef = useRef<HTMLButtonElement>(null);
+  const gameEndedByTimeRef = useRef(false); // Ref to track if game ended due to time
 
   // Load high score from local storage
   useEffect(() => {
-    // Ensure this only runs on the client
+    // This useEffect runs only on the client side after mount
     const storedHighScore = localStorage.getItem('loveClickerHighScore_v2');
     if (storedHighScore) {
       setHighScore(parseInt(storedHighScore, 10));
     }
   }, []);
 
-  // Game timer logic
+  // Effect for timer countdown
   useEffect(() => {
-    if (!gameActive || timeLeft <= 0) {
-      if (gameActive) { // Only update high score if the game was actually played
-        setGameActive(false);
-        setTimeLeft(0);
-        if (score > highScore) {
-          setHighScore(score);
-          // Ensure localStorage is accessed only on client
-          localStorage.setItem('loveClickerHighScore_v2', score.toString());
-          setFeedback(`¡Nuevo Récord: ${score}! 💖🎉`);
-        } else if (score > 0) {
-           setFeedback(`¡Tiempo! Puntuación: ${score}. Intenta superar ${highScore}!`);
-        } else {
-            setFeedback(`¡Tiempo! Puntuación: ${score}. ¡Puedes hacerlo mejor!`);
-        }
-      }
-      return; // Stop the timer effect
+    if (!gameActive) {
+      return;
+    }
+
+    if (timeLeft <= 0) {
+      gameEndedByTimeRef.current = true; // Mark that game ended due to time
+      setGameActive(false); // Stop the game
+      return;
     }
 
     const timerId = setTimeout(() => {
-      setTimeLeft(timeLeft - 1);
+      setTimeLeft(t => t - 1);
     }, 1000);
 
-    // Cleanup function to clear the timeout if the component unmounts or game stops
     return () => clearTimeout(timerId);
-  }, [timeLeft, gameActive, score, highScore]); // Dependencies for the effect
+  }, [gameActive, timeLeft]); // Dependencies ONLY on gameActive and timeLeft
+
+  // Effect for handling game over logic (feedback, high score)
+  useEffect(() => {
+    // This effect runs when gameActive changes or score/highScore changes.
+    // We only want to process game over logic if the game just ended by time.
+    if (!gameActive && gameEndedByTimeRef.current) {
+      // Game has ended because time ran out
+      if (score > highScore) {
+        setHighScore(score); // Use current score from state
+        // localStorage is safe to use here as this effect runs client-side
+        localStorage.setItem('loveClickerHighScore_v2', score.toString());
+        setFeedback(`¡Nuevo Récord: ${score}! 💖🎉`);
+      } else if (score > 0) {
+        setFeedback(`¡Tiempo! Puntuación: ${score}. Intenta superar ${highScore}!`);
+      } else {
+        setFeedback(`¡Tiempo! Puntuación: ${score}. ¡Puedes hacerlo mejor!`);
+      }
+      gameEndedByTimeRef.current = false; // Reset the flag after processing
+    }
+  }, [gameActive, score, highScore]); // Depends on gameActive, score, highScore
 
   const startGame = useCallback(() => {
     setScore(0);
     setTimeLeft(GAME_DURATION);
     setGameActive(true);
     setFeedback("¡Haz clic en el corazón!");
-    setClicks([]); // Clear previous clicks
-  }, []);
+    setClicks([]);
+    gameEndedByTimeRef.current = false; // Ensure flag is reset for a new game
+  }, []); // Empty dependency array is correct
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!gameActive || !loveButtonRef.current) return; // Check if button ref exists
+    if (!gameActive || !loveButtonRef.current) return;
 
-    // Add score
-    const points = 1 + Math.floor(Math.random() * 3); // Random points (1-3) per click
+    const points = 1 + Math.floor(Math.random() * 3);
     setScore(prevScore => prevScore + points);
 
-    // Visual feedback for click position
-    const rect = loveButtonRef.current.getBoundingClientRect(); // Use ref
+    const rect = loveButtonRef.current.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
     const newClick = { id: Date.now(), x, y };
     setClicks(prevClicks => [...prevClicks, newClick]);
 
-    // Remove the visual feedback after animation
     setTimeout(() => {
       setClicks(prevClicks => prevClicks.filter(click => click.id !== newClick.id));
-    }, 500); // Match animation duration
+    }, 500);
 
-    // Button feedback
-    const buttonElement = loveButtonRef.current; // Store ref in a variable
+    const buttonElement = loveButtonRef.current;
     buttonElement.classList.add('animate-click-effect');
-    // Use the stored element reference in setTimeout
     setTimeout(() => {
-        if (buttonElement) { // Check if element still exists
-            buttonElement.classList.remove('animate-click-effect');
+        // Check if buttonElement still exists, e.g. component hasn't unmounted
+        if (loveButtonRef.current) { 
+            loveButtonRef.current.classList.remove('animate-click-effect');
         }
     }, 200);
   };
@@ -105,13 +113,11 @@ const LoveClickerGame = () => {
         <CardDescription>¡Atrapa todos los puntos de amor que puedas en {GAME_DURATION} segundos!</CardDescription>
       </CardHeader>
       <CardContent className="p-6 space-y-6 relative">
-        {/* Score Display */}
         <div className="text-6xl font-bold text-foreground mb-4 drop-shadow-md">{score}</div>
 
-        {/* Click Area Button */}
         <div className="relative w-full h-48 flex items-center justify-center">
            <Button
-              ref={loveButtonRef} // Assign ref here
+              ref={loveButtonRef}
               id="love-button"
               onClick={handleClick}
               disabled={!gameActive}
@@ -119,27 +125,24 @@ const LoveClickerGame = () => {
               className={cn(
                 "absolute inset-0 w-full h-full bg-gradient-to-br from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white text-2xl shadow-lg transition-all duration-150 ease-out flex items-center justify-center flex-col gap-2",
                 !gameActive && "opacity-70 cursor-not-allowed",
-                 gameActive && "hover:scale-105 active:scale-100" // Only scale when active
+                 gameActive && "hover:scale-105 active:scale-100"
               )}
               aria-label="Haz clic aquí para puntuar"
             >
               <Heart className="w-16 h-16 fill-white drop-shadow-lg" />
               <span className="font-semibold">{gameActive ? "¡Clickea Rápido!" : "Prepara tus Dedos..."}</span>
             </Button>
-            {/* Floating Score Indicators */}
             {clicks.map(click => (
               <div
                 key={click.id}
                 className="absolute text-lg font-bold text-yellow-300 pointer-events-none animate-score-popup"
                 style={{ left: `${click.x}px`, top: `${click.y}px`, transform: 'translate(-50%, -100%)' }}
               >
-                +{1 + Math.floor(Math.random() * 3)} {/* Show potential points */}
+                +{1 + Math.floor(Math.random() * 3)}
               </div>
             ))}
         </div>
 
-
-        {/* Game State Display */}
         {gameActive ? (
           <div className="space-y-2">
             <div className="text-xl text-muted-foreground flex items-center justify-center gap-2">
@@ -151,18 +154,16 @@ const LoveClickerGame = () => {
         ) : (
           <Button onClick={startGame} size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-3 shadow-md">
              <Sparkles className="w-5 h-5 mr-2" />
-            {score > 0 || feedback ? 'Jugar de Nuevo' : 'Empezar Juego'}
+            {(score > 0 || feedback) && timeLeft <=0 ? 'Jugar de Nuevo' : 'Empezar Juego'}
           </Button>
         )}
 
-        {/* Feedback Area */}
         {feedback && (
           <p className="text-lg font-semibold text-accent-foreground pt-4 min-h-[2.5rem]">
             {feedback}
           </p>
         )}
 
-        {/* High Score */}
         <div className="text-md text-muted-foreground flex items-center justify-center gap-2 border-t pt-4">
             <Trophy className="w-5 h-5 text-amber-500" />
             <span>Puntuación Máxima: {highScore}</span>
@@ -184,7 +185,6 @@ export default function MinigamePage() {
         <p className="text-lg text-muted-foreground">¡Un pequeño juego para compartir grandes sonrisas!</p>
       </header>
       <LoveClickerGame />
-       {/* Simplified CSS Animations */}
        <style jsx global>{`
         @keyframes score-popup {
           0% { opacity: 1; transform: translate(-50%, -100%) scale(1); }
