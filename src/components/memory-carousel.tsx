@@ -17,11 +17,11 @@ interface Memory {
 }
 
 const memories: Memory[] = [
-  { id: 1, title: "Our First Date", message: "Remember that little cafe? It felt like magic from the start. The cozy ambiance, the scent of coffee, and your sparkling eyes across the table made it unforgettable.", image: "https://picsum.photos/600/400?random=1", date: "2022-03-15", imageHint: "cafe couple" },
-  { id: 2, title: "Movie Night Cuddles", message: "Wrapped in a soft blanket, sharing popcorn and endless laughter during our favorite movie. Those simple moments are pure bliss.", image: "https://picsum.photos/600/400?random=2", date: "2022-07-20", imageHint: "couple watching movie" },
-  { id: 3, title: "That Surprise Trip", message: "Waking up to a packed bag and an adventure waiting. The thrill of the unknown and sharing it with you was exhilarating. You always know how to make life exciting!", image: "https://picsum.photos/600/400?random=3", date: "2023-01-05", imageHint: "couple travel" },
-  { id: 4, title: "Late Night Talks", message: "Sharing dreams, fears, and silly thoughts under a blanket of stars. Those deep conversations connect us on a level words can't fully describe.", image: "https://picsum.photos/600/400?random=4", date: "Ongoing", imageHint: "couple night" },
-  { id: 5, title: "Cooking Adventures", message: "Flour-dusted noses and a kitchen filled with laughter (and sometimes smoke!). Every meal we make together is a masterpiece of love.", image: "https://picsum.photos/600/400?random=5", date: "Weekly", imageHint: "couple cooking" },
+  { id: 1, title: "Nuestra Primera Cita", message: "¿Recuerdas ese pequeño café? Se sintió como magia desde el principio. El ambiente acogedor, el aroma del café y tus ojos brillantes al otro lado de la mesa lo hicieron inolvidable.", image: "https://picsum.photos/600/400?random=1", date: "2022-03-15", imageHint: "pareja cafe" },
+  { id: 2, title: "Abrazos de Noche de Película", message: "Envueltos en una manta suave, compartiendo palomitas y risas interminables durante nuestra película favorita. Esos momentos simples son pura felicidad.", image: "https://picsum.photos/600/400?random=2", date: "2022-07-20", imageHint: "pareja viendo pelicula" },
+  { id: 3, title: "Ese Viaje Sorpresa", message: "Despertar con una maleta hecha y una aventura esperando. La emoción de lo desconocido y compartirlo contigo fue estimulante. ¡Siempre sabes cómo hacer la vida emocionante!", image: "https://picsum.photos/600/400?random=3", date: "2023-01-05", imageHint: "pareja viaje" },
+  { id: 4, title: "Charlas Nocturnas", message: "Compartiendo sueños, miedos y pensamientos tontos bajo un manto de estrellas. Esas conversaciones profundas nos conectan a un nivel que las palabras no pueden describir completamente.", image: "https://picsum.photos/600/400?random=4", date: "Continuo", imageHint: "pareja noche" },
+  { id: 5, title: "Aventuras Culinarias", message: "Narices empolvadas de harina y una cocina llena de risas (¡y a veces humo!). Cada comida que hacemos juntos es una obra maestra de amor.", image: "https://picsum.photos/600/400?random=5", date: "Semanalmente", imageHint: "pareja cocinando" },
 ];
 
 export default function MemoryCarousel() {
@@ -64,29 +64,29 @@ export default function MemoryCarousel() {
         <CardFooter className="flex justify-between items-center p-6 bg-muted/50">
            <div className="flex items-center text-sm text-muted-foreground">
             <Sparkles className="w-4 h-4 mr-2 text-primary" />
-            <span>Memory {currentIndex + 1} of {memories.length}</span>
+            <span>Recuerdo {currentIndex + 1} de {memories.length}</span>
           </div>
            <div className="text-sm text-muted-foreground">
-             Swipe for more
+             Desliza para ver más
            </div>
         </CardFooter>
       </Card>
 
       <div className="flex space-x-4">
         <Button onClick={handlePrevious} variant="outline" size="lg" className="shadow-md hover:bg-accent hover:text-accent-foreground">
-          <ChevronLeft className="mr-2 h-5 w-5" /> Previous
+          <ChevronLeft className="mr-2 h-5 w-5" /> Anterior
         </Button>
         <Button onClick={handleNext} variant="outline" size="lg" className="shadow-md hover:bg-accent hover:text-accent-foreground">
-          Next <ChevronRight className="ml-2 h-5 w-5" />
+          Siguiente <ChevronRight className="ml-2 h-5 w-5" />
         </Button>
       </div>
-      
+
       <div className="flex justify-center space-x-2 mt-4">
         {memories.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            aria-label={`Go to memory ${index + 1}`}
+            aria-label={`Ir al recuerdo ${index + 1}`}
             className={cn(
               "w-3 h-3 rounded-full transition-all duration-300",
               currentIndex === index ? "bg-primary scale-125" : "bg-muted hover:bg-primary/50"

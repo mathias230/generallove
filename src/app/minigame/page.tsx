@@ -8,7 +8,7 @@ import { Progress } from '@/components/ui/progress';
 
 const LoveClickerGame = () => {
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(30); // 30 seconds game
+  const [timeLeft, setTimeLeft] = useState(30); // Juego de 30 segundos
   const [gameActive, setGameActive] = useState(false);
   const [highScore, setHighScore] = useState(0);
   const [feedback, setFeedback] = useState<string | null>(null);
@@ -25,9 +25,9 @@ const LoveClickerGame = () => {
       if (gameActive && score > highScore) {
         setHighScore(score);
         localStorage.setItem('loveClickerHighScore', score.toString());
-        setFeedback(`New High Score: ${score}! 🎉`);
+        setFeedback(`¡Nuevo Récord: ${score}! 🎉`);
       } else if (gameActive) {
-        setFeedback(`Game Over! Your score: ${score}`);
+        setFeedback(`¡Juego Terminado! Tu puntuación: ${score}`);
       }
       setGameActive(false);
       return;
@@ -58,7 +58,7 @@ const LoveClickerGame = () => {
       }
     }
   };
-  
+
   // Add this to your globals.css or a style tag if not already present
   // @keyframes ping-once { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.7; } }
   // .animate-ping-once { animation: ping-once 0.3s cubic-bezier(0, 0, 0.2, 1); }
@@ -68,32 +68,32 @@ const LoveClickerGame = () => {
       <CardHeader>
         <CardTitle className="text-3xl text-primary flex items-center justify-center gap-2">
             <Zap className="w-7 h-7" />
-            Love Clicker Challenge!
+            ¡Reto Love Clicker!
         </CardTitle>
-        <CardDescription>Click the heart as many times as you can in 30 seconds!</CardDescription>
+        <CardDescription>¡Haz clic en el corazón tantas veces como puedas en 30 segundos!</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="text-5xl font-bold text-foreground">{score}</div>
-        
+
         <Button
           id="love-button"
           onClick={handleClick}
           disabled={!gameActive}
           size="lg"
           className="w-full h-24 bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white text-2xl shadow-lg transform active:scale-95 transition-transform"
-          aria-label="Click to score"
+          aria-label="Haz clic para puntuar"
         >
-          <Heart className="w-12 h-12 fill-white mr-3" /> Click Me!
+          <Heart className="w-12 h-12 fill-white mr-3" /> ¡Haz Clic!
         </Button>
 
         {gameActive ? (
           <div>
-            <p className="text-lg text-muted-foreground">Time Left: {timeLeft}s</p>
+            <p className="text-lg text-muted-foreground">Tiempo Restante: {timeLeft}s</p>
             <Progress value={(timeLeft / 30) * 100} className="w-full h-3 mt-2 [&>div]:bg-primary" />
           </div>
         ) : (
           <Button onClick={startGame} size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-            Start Game
+            Empezar Juego
           </Button>
         )}
 
@@ -103,7 +103,7 @@ const LoveClickerGame = () => {
 
         <div className="text-md text-muted-foreground flex items-center justify-center gap-2">
             <Trophy className="w-5 h-5 text-amber-500" />
-            High Score: {highScore}
+            Puntuación Máxima: {highScore}
         </div>
       </CardContent>
     </Card>
@@ -117,9 +117,9 @@ export default function MinigamePage() {
       <header className="text-center">
         <h1 className="text-4xl font-bold text-primary mb-2 flex items-center justify-center gap-3">
             <Gamepad2 className="w-8 h-8" />
-            Our Fun Zone
+            Nuestra Zona de Diversión
         </h1>
-        <p className="text-lg text-muted-foreground">A little game to share some smiles.</p>
+        <p className="text-lg text-muted-foreground">Un pequeño juego para compartir algunas sonrisas.</p>
       </header>
       <LoveClickerGame />
        <style jsx global>{`

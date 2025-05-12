@@ -2,10 +2,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { MessageSquare, Quote } from 'lucide-react';
 
 const messages = [
-  { id: 1, title: "A Note of Love", content: "Every day with you feels like a beautiful dream I never want to wake up from. Your love is my greatest treasure.", author: "Your Love", date: "Just Now" },
-  { id: 2, title: "Thinking of You", content: "Just wanted to send a little reminder of how much you mean to me. You light up my world in ways you can't imagine.", author: "Me", date: "Yesterday" },
-  { id: 3, title: "My Everything", content: "You are my rock, my inspiration, and my best friend. Thank you for being you, and for being mine.", author: "Forever Yours", date: "Last Week" },
-  { id: 4, title: "Sweet Nothings", content: "Whispering sweet nothings and sharing secret smiles - these are the threads that weave our love story.", author: "Adoringly", date: "A While Ago" },
+  { id: 1, title: "Una Nota de Amor", content: "Cada día contigo se siente como un hermoso sueño del que nunca quiero despertar. Tu amor es mi mayor tesoro.", author: "Tu Amor", date: "Ahora Mismo" },
+  { id: 2, title: "Pensando en Ti", content: "Solo quería enviarte un pequeño recordatorio de cuánto significas para mí. Iluminas mi mundo de maneras que no puedes imaginar.", author: "Yo", date: "Ayer" },
+  { id: 3, title: "Mi Todo", content: "Eres mi roca, mi inspiración y mi mejor amigo/a. Gracias por ser tú, y por ser mío/a.", author: "Siempre Tuyo/a", date: "La Semana Pasada" },
+  { id: 4, title: "Palabras Dulces", content: "Susurrando palabras dulces y compartiendo sonrisas secretas - estos son los hilos que tejen nuestra historia de amor.", author: "Con Adoración", date: "Hace un Tiempo" },
 ];
 
 export default function MessagesPage() {
@@ -14,9 +14,9 @@ export default function MessagesPage() {
       <header className="text-center">
         <h1 className="text-4xl font-bold text-primary mb-2 flex items-center justify-center gap-3">
             <MessageSquare className="w-8 h-8" />
-            Words from the Heart
+            Palabras del Corazón
         </h1>
-        <p className="text-lg text-muted-foreground">Messages that echo our love and affection.</p>
+        <p className="text-lg text-muted-foreground">Mensajes que hacen eco de nuestro amor y afecto.</p>
       </header>
 
       <div className="space-y-6 max-w-2xl mx-auto">
@@ -26,10 +26,10 @@ export default function MessagesPage() {
               <div className="flex justify-between items-start">
                 <div>
                   <CardTitle className="text-2xl text-primary flex items-center gap-2">
-                    <Quote className="w-6 h-6 transform -scale-x-100" /> 
+                    <Quote className="w-6 h-6 transform -scale-x-100" />
                     {message.title}
                   </CardTitle>
-                  <CardDescription className="text-sm text-muted-foreground mt-1">From: {message.author} | {message.date}</CardDescription>
+                  <CardDescription className="text-sm text-muted-foreground mt-1">De: {message.author} | {message.date}</CardDescription>
                 </div>
                 <Quote className="w-8 h-8 text-accent opacity-50" />
               </div>

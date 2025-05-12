@@ -13,7 +13,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: 'Amor Eterno',
-  description: 'A special place for our memories and moments.',
+  description: 'Un lugar especial para nuestros recuerdos y momentos.',
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es"> {/* Change lang attribute to Spanish */}
       {/* Apply the font class name and variable */}
       <body className={`${GeistSans.variable} ${GeistSans.className} font-sans antialiased`}>
         <SidebarProvider defaultOpen={true}>

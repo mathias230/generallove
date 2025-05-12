@@ -5,6 +5,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { CalendarDays, Gift, Star } from 'lucide-react';
 import { format } from 'date-fns';
+import { es } from 'date-fns/locale'; // Import Spanish locale
 
 interface SpecialDate {
   date: string; // YYYY-MM-DD
@@ -13,23 +14,16 @@ interface SpecialDate {
   icon: React.ElementType;
 }
 
-const specialDates: SpecialDate[] = [
-  { date: '2024-03-15', title: "Our First Date Anniversary", description: "Celebrating the day our journey began!", icon: Star },
-  { date: '2024-08-22', title: "Partner's Birthday", description: "A special day for my special someone!", icon: Gift },
-  { date: '2024-12-25', title: "Christmas Together", description: "Cozy holidays and warm memories.", icon: Gift },
-  // Add more dates as needed, ensure year is current or relevant
-];
-
 // Helper to get current year for dynamic dates
 const getCurrentYear = () => new Date().getFullYear();
 
 const getDynamicSpecialDates = (): SpecialDate[] => {
   const year = getCurrentYear();
   return [
-    { date: `${year}-03-15`, title: "Our First Date Anniversary", description: `Celebrating the day our journey began in ${year}!`, icon: Star },
-    { date: `${year}-08-22`, title: "Partner's Birthday", description: `A special day for my special someone in ${year}!`, icon: Gift },
-    { date: `${year}-12-25`, title: "Christmas Together", description: `Cozy holidays and warm memories in ${year}.`, icon: Gift },
-    { date: `${year+1}-01-01`, title: "New Year's Day", description: "First day of a new year together!", icon: Star },
+    { date: `${year}-03-15`, title: "Aniversario Primera Cita", description: `¡Celebrando el día que comenzó nuestro viaje en ${year}!`, icon: Star },
+    { date: `${year}-08-22`, title: "Cumpleaños de mi Amor", description: `¡Un día especial para mi persona especial en ${year}!`, icon: Gift },
+    { date: `${year}-12-25`, title: "Navidad Juntos", description: `Fiestas acogedoras y cálidos recuerdos en ${year}.`, icon: Gift },
+    { date: `${year+1}-01-01`, title: "Día de Año Nuevo", description: "¡Primer día de un nuevo año juntos!", icon: Star },
   ];
 };
 
@@ -58,9 +52,9 @@ export default function DatesPage() {
       <header className="text-center">
         <h1 className="text-4xl font-bold text-primary mb-2 flex items-center justify-center gap-3">
             <CalendarDays className="w-8 h-8" />
-            Our Special Calendar
+            Nuestro Calendario Especial
         </h1>
-        <p className="text-lg text-muted-foreground">Never miss a moment that matters to us.</p>
+        <p className="text-lg text-muted-foreground">Nunca te pierdas un momento importante para nosotros.</p>
       </header>
 
       <div className="flex flex-col lg:flex-row gap-8 items-start justify-center">
@@ -71,6 +65,7 @@ export default function DatesPage() {
               selected={date}
               onSelect={setDate}
               className="rounded-md border bg-card w-full"
+              locale={es} // Set locale to Spanish
               modifiers={{
                 special: allSpecialDates.map(d => new Date(d.date.replace(/-/g, '/'))) // Ensure correct date parsing
               }}
@@ -84,10 +79,10 @@ export default function DatesPage() {
         <Card className="shadow-lg w-full lg:max-w-md flex-grow">
           <CardHeader>
             <CardTitle className="text-2xl text-primary">
-              {date ? format(date, "PPP") : "Select a Date"}
+              {date ? format(date, "PPP", { locale: es }) : "Selecciona una Fecha"}
             </CardTitle>
             <CardDescription>
-              {selectedEvents.length > 0 ? "Here's what's special today:" : "No special events for this day."}
+              {selectedEvents.length > 0 ? "Esto es lo especial de hoy:" : "No hay eventos especiales para este día."}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -103,7 +98,7 @@ export default function DatesPage() {
               ))
             ) : (
               <p className="text-muted-foreground italic">
-                {date ? "No special occasions marked for this date. Maybe plan something lovely?" : "Click on a date in the calendar to see details."}
+                {date ? "¿No hay ocasiones especiales marcadas para esta fecha? ¿Quizás planear algo encantador?" : "Haz clic en una fecha en el calendario para ver los detalles."}
               </p>
             )}
           </CardContent>

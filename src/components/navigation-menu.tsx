@@ -16,12 +16,12 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
 const navItems = [
-  { href: '/', label: 'Memories', icon: Heart },
-  { href: '/photos', label: 'Photos', icon: ImageIcon },
-  { href: '/messages', label: 'Messages', icon: MessageSquare },
-  { href: '/dates', label: 'Our Calendar', icon: CalendarDays },
+  { href: '/', label: 'Recuerdos', icon: Heart },
+  { href: '/photos', label: 'Fotos', icon: ImageIcon },
+  { href: '/messages', label: 'Mensajes', icon: MessageSquare },
+  { href: '/dates', label: 'Calendario', icon: CalendarDays },
   { href: '/playlists', label: 'Playlists', icon: ListMusic },
-  { href: '/minigame', label: 'Our Game', icon: Gamepad2 },
+  { href: '/minigame', label: 'Juego', icon: Gamepad2 },
 ];
 
 export default function NavigationMenu() {
@@ -65,7 +65,7 @@ export default function NavigationMenu() {
       <SidebarFooter className="p-4 border-t border-sidebar-border">
          <Button variant="ghost" className="w-full justify-start text-base py-3 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
             <Settings className="w-5 h-5 mr-3" />
-            <span>Settings</span>
+            <span>Ajustes</span>
         </Button>
       </SidebarFooter>
     </>
