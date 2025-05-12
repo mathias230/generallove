@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning> {/* Add suppressHydrationWarning for next-themes */}
+    <html lang="es" suppressHydrationWarning>
       {/* No whitespace or comments should be directly here */}
       <body className={`${GeistSans.variable} ${GeistSans.className} font-sans antialiased`}>
         <ThemeProvider
