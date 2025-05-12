@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es"> {/* Change lang attribute to Spanish */}
+    <html lang="es">
       {/* Apply the font class name and variable */}
       <body className={`${GeistSans.variable} ${GeistSans.className} font-sans antialiased`}>
         <SidebarProvider defaultOpen={true}>
