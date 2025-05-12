@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Gamepad2, Heart, Zap, Trophy, Sparkles, Clock } from 'lucide-react';
@@ -17,9 +17,11 @@ const LoveClickerGame = () => {
   const [highScore, setHighScore] = useState(0);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [clicks, setClicks] = useState<{ id: number; x: number; y: number }[]>([]);
+  const loveButtonRef = useRef<HTMLButtonElement>(null); // Ref for the button
 
   // Load high score from local storage
   useEffect(() => {
+    // Ensure this only runs on the client
     const storedHighScore = localStorage.getItem('loveClickerHighScore_v2');
     if (storedHighScore) {
       setHighScore(parseInt(storedHighScore, 10));
@@ -34,6 +36,7 @@ const LoveClickerGame = () => {
         setTimeLeft(0);
         if (score > highScore) {
           setHighScore(score);
+          // Ensure localStorage is accessed only on client
           localStorage.setItem('loveClickerHighScore_v2', score.toString());
           setFeedback(`¡Nuevo Récord: ${score}! 💖🎉`);
         } else if (score > 0) {
@@ -62,14 +65,14 @@ const LoveClickerGame = () => {
   }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!gameActive) return;
+    if (!gameActive || !loveButtonRef.current) return; // Check if button ref exists
 
     // Add score
     const points = 1 + Math.floor(Math.random() * 3); // Random points (1-3) per click
     setScore(prevScore => prevScore + points);
 
     // Visual feedback for click position
-    const rect = event.currentTarget.getBoundingClientRect();
+    const rect = loveButtonRef.current.getBoundingClientRect(); // Use ref
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
     const newClick = { id: Date.now(), x, y };
@@ -80,9 +83,15 @@ const LoveClickerGame = () => {
       setClicks(prevClicks => prevClicks.filter(click => click.id !== newClick.id));
     }, 500); // Match animation duration
 
-    // Button feedback (already had ping, maybe scale slightly?)
-    event.currentTarget.classList.add('animate-click-effect');
-    setTimeout(() => event.currentTarget.classList.remove('animate-click-effect'), 200);
+    // Button feedback
+    const buttonElement = loveButtonRef.current; // Store ref in a variable
+    buttonElement.classList.add('animate-click-effect');
+    // Use the stored element reference in setTimeout
+    setTimeout(() => {
+        if (buttonElement) { // Check if element still exists
+            buttonElement.classList.remove('animate-click-effect');
+        }
+    }, 200);
   };
 
 
@@ -102,6 +111,7 @@ const LoveClickerGame = () => {
         {/* Click Area Button */}
         <div className="relative w-full h-48 flex items-center justify-center">
            <Button
+              ref={loveButtonRef} // Assign ref here
               id="love-button"
               onClick={handleClick}
               disabled={!gameActive}
