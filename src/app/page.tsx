@@ -9,7 +9,7 @@ export default function HomePage() {
           Emi y Mathi
         </h1>
         <p className="text-xl text-muted-foreground">
-          Un lugar especial para nuestros recuerdos y momentos compartidos.
+          Nuestro lugar para guardar cada tipo de recuerdo
         </p>
       </header>
       {/* Memory carousel is now below the main title */}
