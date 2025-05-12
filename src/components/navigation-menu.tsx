@@ -1,8 +1,9 @@
+
 "use client";
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Heart, MessageSquare, CalendarDays, ListMusic, Gamepad2, Settings } from 'lucide-react';
+import { Heart, MessageSquare, CalendarDays, Gamepad2, Settings } from 'lucide-react'; // Removed ListMusic
 import {
   SidebarHeader,
   SidebarContent,
@@ -19,7 +20,7 @@ const navItems = [
   { href: '/', label: 'Inicio', icon: Heart },
   { href: '/messages', label: 'Mensajes', icon: MessageSquare },
   { href: '/dates', label: 'Calendario', icon: CalendarDays },
-  { href: '/playlists', label: 'Playlists', icon: ListMusic },
+  // { href: '/playlists', label: 'Playlists', icon: ListMusic }, // Removed Playlists
   { href: '/minigame', label: 'Juego', icon: Gamepad2 },
 ];
 
@@ -70,3 +71,4 @@ export default function NavigationMenu() {
     </>
   );
 }
+
