@@ -10,7 +10,7 @@ export default function PlaylistsPage() {
   const mainPlaylist = {
     title: "Nuestra Playlist Especial",
     description: "La banda sonora de nuestros momentos.",
-    url: "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M", // Example Spotify playlist link
+    url: "https://open.spotify.com/playlist/647x1NQZFuGixnJqUFMnGS?si=e572485d3fab464e&pt=f617c586e9026629237321ccd92baa7d", // Updated Spotify playlist link
   };
 
   return (
