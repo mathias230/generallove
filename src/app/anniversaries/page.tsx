@@ -1,7 +1,7 @@
 
 import Link from 'next/link'; // Import Link for navigation
 import { Button } from '@/components/ui/button'; // Import Button component
-import { Gift } from 'lucide-react';
+import { Gift, Sparkles } from 'lucide-react';
 
 export default function AnniversariesPage() {
   return (
@@ -15,9 +15,10 @@ export default function AnniversariesPage() {
       </header>
 
       <div className="mt-12 flex justify-center"> {/* Add margin top and center button */}
-        {/* Large button linking to homepage (replace href later if needed) */}
-        <Link href="/" passHref>
-          <Button size="lg" className="text-xl px-12 py-8 shadow-lg transform hover:scale-105 transition-transform duration-300"> {/* Make button large */}
+        {/* Large button linking to the 0.12 anniversary page */}
+        <Link href="/anniversaries/0.12" passHref>
+          <Button size="lg" className="text-xl px-12 py-8 shadow-lg transform hover:scale-105 transition-transform duration-300 flex items-center gap-2">
+            <Sparkles className="w-6 h-6" />
             0.12
           </Button>
         </Link>
