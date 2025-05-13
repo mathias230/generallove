@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Heart, MessageSquare, CalendarDays, Gamepad2, Gift } from 'lucide-react'; // Removed Settings icon
+import { Heart, CalendarDays, Gamepad2, Gift } from 'lucide-react'; // Removed MessageSquare icon
 import {
   SidebarHeader,
   SidebarContent,
@@ -14,12 +14,10 @@ import {
   SidebarTrigger
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
-// Removed Button import as it's no longer needed for settings
 import { ThemeToggle } from '@/components/theme-toggle'; // Import ThemeToggle
 
 const navItems = [
   { href: '/', label: 'Inicio', icon: Heart },
-  { href: '/messages', label: 'Mensajes', icon: MessageSquare },
   { href: '/dates', label: 'Calendario', icon: CalendarDays },
   { href: '/anniversaries', label: 'Aniversarios', icon: Gift },
   { href: '/minigame', label: 'Juego', icon: Gamepad2 },
@@ -64,9 +62,9 @@ export default function NavigationMenu() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="p-4 border-t border-sidebar-border flex justify-center items-center">
-         {/* Removed Settings Button */}
          <ThemeToggle /> {/* Added ThemeToggle button */}
       </SidebarFooter>
     </>
   );
 }
+
