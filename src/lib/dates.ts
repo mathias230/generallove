@@ -1,6 +1,6 @@
 
 import type { SpecialDate } from '@/types/dates';
-import { format, setDate, setMonth } from 'date-fns';
+import { format, getMonth } from 'date-fns'; // Added getMonth import
 import { Star, Cake, Gift } from 'lucide-react';
 
 /**
