@@ -14,7 +14,14 @@ export default function AnniversariesPage() {
         <p className="text-lg text-muted-foreground">Celebrando los hitos de nuestro amor.</p>
       </header>
 
-      <div className="mt-12 flex justify-center"> {/* Add margin top and center button */}
+      <div className="mt-12 flex flex-wrap justify-center gap-4"> {/* Add margin top and center buttons, allow wrapping */}
+        {/* Button linking to the 0.11 anniversary page */}
+        <Link href="/anniversaries/0.11" passHref>
+          <Button size="lg" className="text-xl px-12 py-8 shadow-lg transform hover:scale-105 transition-transform duration-300 flex items-center gap-2">
+            <Sparkles className="w-6 h-6" />
+            0.11
+          </Button>
+        </Link>
         {/* Large button linking to the 0.12 anniversary page */}
         <Link href="/anniversaries/0.12" passHref>
           <Button size="lg" className="text-xl px-12 py-8 shadow-lg transform hover:scale-105 transition-transform duration-300 flex items-center gap-2">
@@ -26,3 +33,4 @@ export default function AnniversariesPage() {
     </div>
   );
 }
+
