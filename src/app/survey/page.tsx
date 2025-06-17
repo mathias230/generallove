@@ -29,15 +29,15 @@ const quizQuestions: QuizQuestion[] = [
     id: 'q2',
     text: '¿Cuál es mi juego favorito?',
     options: ['Fortnite', 'Rocket League', 'FIFA', 'No Man\'s Sky'],
-    correctAnswer: 'No Man\'s Sky',
-    hint: 'Un universo para explorar sin límites.',
+    correctAnswer: 'FIFA', // Updated answer
+    hint: 'Un universo para explorar sin límites, o quizás uno de deportes.',
   },
   {
     id: 'q3',
     text: '¿Cuál es mi color favorito?',
     options: ['Azul', 'Verde', 'Negro', 'Rojo'],
-    correctAnswer: 'Negro',
-    hint: 'Elegancia y oscuridad.',
+    correctAnswer: 'Rojo', // Updated answer
+    hint: 'Elegancia y oscuridad, o quizás pasión.',
   },
   {
     id: 'q4',
@@ -200,3 +200,4 @@ export default function QuestionsPage() {
     </div>
   );
 }
+
