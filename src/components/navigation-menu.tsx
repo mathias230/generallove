@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Heart, CalendarDays, Gamepad2, Gift } from 'lucide-react'; // Removed MessageSquare icon
+import { Heart, CalendarDays, Gamepad2, Gift } from 'lucide-react';
 import {
   SidebarHeader,
   SidebarContent,
@@ -11,10 +11,11 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarFooter,
-  SidebarTrigger
+  SidebarTrigger,
+  useSidebar, // Import useSidebar
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
-import { ThemeToggle } from '@/components/theme-toggle'; // Import ThemeToggle
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const navItems = [
   { href: '/', label: 'Inicio', icon: Heart },
@@ -25,6 +26,13 @@ const navItems = [
 
 export default function NavigationMenu() {
   const pathname = usePathname();
+  const { setOpenMobile, isMobile } = useSidebar(); // Get sidebar context
+
+  const handleLinkClick = () => {
+    if (isMobile) {
+      setOpenMobile(false); // Close sidebar on mobile after click
+    }
+  };
 
   return (
     <>
@@ -50,6 +58,7 @@ export default function NavigationMenu() {
                     pathname === item.href ? "bg-sidebar-primary text-sidebar-primary-foreground" : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                   )}
                   tooltip={item.label}
+                  onClick={handleLinkClick} // Add onClick handler
                 >
                   <a>
                     <item.icon className="w-5 h-5 mr-3" />
@@ -62,9 +71,8 @@ export default function NavigationMenu() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="p-4 border-t border-sidebar-border flex justify-center items-center">
-         <ThemeToggle /> {/* Added ThemeToggle button */}
+         <ThemeToggle />
       </SidebarFooter>
     </>
   );
 }
-
