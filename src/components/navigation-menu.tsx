@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Heart, CalendarDays, Gamepad2, Gift, HelpCircle } from 'lucide-react'; // Added HelpCircle
+import { Heart, CalendarDays, Gamepad2, Gift, HelpCircle } from 'lucide-react';
 import {
   SidebarHeader,
   SidebarContent,
@@ -22,7 +22,7 @@ const navItems = [
   { href: '/dates', label: 'Calendario', icon: CalendarDays },
   { href: '/anniversaries', label: 'Aniversarios', icon: Gift },
   { href: '/minigame', label: 'Juego', icon: Gamepad2 },
-  { href: '/survey', label: 'Encuesta', icon: HelpCircle }, // Added Survey link
+  { href: '/survey', label: 'Preguntas', icon: HelpCircle }, // Updated Label
 ];
 
 export default function NavigationMenu() {
