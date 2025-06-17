@@ -11,7 +11,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarFooter,
-  SidebarTrigger,
+  // SidebarTrigger, // Removed as it's now in layout.tsx for mobile
   useSidebar,
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
@@ -22,7 +22,7 @@ const navItems = [
   { href: '/dates', label: 'Calendario', icon: CalendarDays },
   { href: '/anniversaries', label: 'Aniversarios', icon: Gift },
   { href: '/minigame', label: 'Juego', icon: Gamepad2 },
-  { href: '/survey', label: 'Preguntas', icon: HelpCircle }, // Updated Label
+  { href: '/survey', label: 'Preguntas', icon: HelpCircle },
 ];
 
 export default function NavigationMenu() {
@@ -37,14 +37,18 @@ export default function NavigationMenu() {
 
   return (
     <>
-      <SidebarHeader className="p-4 flex items-center justify-between">
+      <SidebarHeader className="p-4 flex items-center justify-start"> {/* Changed justify-between to justify-start */}
         <div className="flex items-center gap-2">
           <Heart className="text-primary w-7 h-7" />
           <h1 className="text-xl font-semibold text-foreground">Amor Eterno</h1>
         </div>
-        <div className="md:hidden">
+        {/* 
+          The SidebarTrigger for mobile has been moved to RootLayout.tsx
+          to be part of a global mobile header.
+        */}
+        {/* <div className="md:hidden">
             <SidebarTrigger />
-        </div>
+        </div> */}
       </SidebarHeader>
       <SidebarContent className="flex-grow p-2">
         <SidebarMenu>
