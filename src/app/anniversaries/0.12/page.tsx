@@ -39,11 +39,9 @@ export default function AnniversaryZeroPointTwelvePage() {
           </div>
         </CardHeader>
         <CardContent className="p-8 space-y-6">
-          <CardDescription className="text-lg text-foreground leading-relaxed">
-            Mi amor, parece que fue ayer cuando empezamos esta aventura, y mira cuánto hemos crecido juntos.
-            Este aniversario 0.12, aunque pueda parecer un número peculiar, simboliza cada pequeño gran momento que hemos compartido.
-            Es un recordatorio de que nuestro amor se construye día a día, con risas, complicidad y ese cariño que solo nosotros entendemos.
-          </CardDescription>
+          <div className="text-lg text-foreground leading-relaxed">
+            Mi amor, parece que fue ayer cuando todo esto empezo, esta bonita aventura, mira cuanto hemos crecido y aprendido juntos, tuvimos errores como cualquier persona pero lo valioso fue la perseverancia y el haber podido aprender de los errores, probablemente nadie creyo en nosotros, en que pasariamos de al menos los 3 meses, y nosotros tampoco creimos la verdad, pero eso nos hizo mas especiales y nos hace, esto demostro nuestra valentia y fuerza, pudimos ir contra viento y marea, nada ni nadie nos separo hasta ahora, ni la distancia, y creeme que nada lo hara, felices 12 meses, FELIZ 1 AÑOOO MI BEBITAAAA, TE AMOOO MUCHO Y TE ADORO DEMASIADO MI NIÑA BONITAAA
+          </div>
 
           <div className="p-6 bg-secondary/30 rounded-lg shadow-inner">
             <h3 className="text-2xl font-semibold text-secondary-foreground mb-3 flex items-center">
