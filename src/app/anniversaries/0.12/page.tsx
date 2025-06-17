@@ -1,9 +1,9 @@
 
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, Gift, Heart, Sparkles } from 'lucide-react';
+import { ArrowLeft, Gift, Heart, Sparkles, Music2 } from 'lucide-react';
 
 export default function AnniversaryZeroPointTwelvePage() {
   return (
@@ -57,11 +57,45 @@ export default function AnniversaryZeroPointTwelvePage() {
           </div>
 
           <p className="text-lg text-foreground leading-relaxed">
-            Gracias por ser mi compañero/a, mi confidente y mi gran amor. Por muchos más momentos, risas y aniversarios juntos.
-            ¡Te amo más de lo que las palabras pueden expresar!
+            Gracias por ser mi compañera, mi novia y mi gran amor, estoy muy orgulloso de todo lo que te he visto lograr, yo siempre confie en ti desde el dia 1, y siempre confiare en ti hasta el infinito y mas alla, disfrutemos de este hermoso dia sin problemas mi amor, disfrutemos porque ño siempre se cumple 1 año, TE AMO Y TE ADORO DEMASIADO MI AMORRRR
           </p>
         </CardContent>
       </Card>
+
+      <Card className="w-full max-w-3xl shadow-xl bg-card/80 backdrop-blur-sm">
+        <CardHeader>
+          <CardTitle className="text-3xl font-bold text-primary flex items-center">
+            <Music2 className="w-8 h-8 mr-3 text-primary" />
+            Letras de Nuestras Canciones
+          </CardTitle>
+          <CardDescription className="text-muted-foreground">
+            Un espacio para esas melodías que cuentan nuestra historia.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <h4 className="text-xl font-semibold text-secondary-foreground mb-2">Nombre de la Canción 1</h4>
+            <pre className="text-sm text-foreground whitespace-pre-wrap bg-muted/50 p-4 rounded-md shadow-inner font-mono">
+              Aquí iría la letra de la canción...
+              Puedes copiar y pegar desde Spotify o donde la tengas.
+              Asegúrate de que el formato sea legible.
+            </pre>
+          </div>
+          <div>
+            <h4 className="text-xl font-semibold text-secondary-foreground mb-2">Nombre de la Canción 2</h4>
+            <pre className="text-sm text-foreground whitespace-pre-wrap bg-muted/50 p-4 rounded-md shadow-inner font-mono">
+              Letra de otra canción especial...
+              Cada línea es un nuevo verso.
+            </pre>
+          </div>
+        </CardContent>
+        <CardFooter>
+            <p className="text-xs text-muted-foreground">
+                Puedes añadir más canciones editando este componente.
+            </p>
+        </CardFooter>
+      </Card>
+
 
       <Link href="/anniversaries" passHref>
         <Button variant="outline" size="lg" className="shadow-md hover:bg-accent hover:text-accent-foreground">
