@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Heart, CalendarDays, Gamepad2, Gift } from 'lucide-react';
+import { Heart, CalendarDays, Gamepad2, Gift, HelpCircle } from 'lucide-react'; // Added HelpCircle
 import {
   SidebarHeader,
   SidebarContent,
@@ -12,7 +12,7 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   SidebarTrigger,
-  useSidebar, // Import useSidebar
+  useSidebar,
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -22,15 +22,16 @@ const navItems = [
   { href: '/dates', label: 'Calendario', icon: CalendarDays },
   { href: '/anniversaries', label: 'Aniversarios', icon: Gift },
   { href: '/minigame', label: 'Juego', icon: Gamepad2 },
+  { href: '/survey', label: 'Encuesta', icon: HelpCircle }, // Added Survey link
 ];
 
 export default function NavigationMenu() {
   const pathname = usePathname();
-  const { setOpenMobile, isMobile } = useSidebar(); // Get sidebar context
+  const { setOpenMobile, isMobile } = useSidebar(); 
 
   const handleLinkClick = () => {
     if (isMobile) {
-      setOpenMobile(false); // Close sidebar on mobile after click
+      setOpenMobile(false); 
     }
   };
 
@@ -58,7 +59,7 @@ export default function NavigationMenu() {
                     pathname === item.href ? "bg-sidebar-primary text-sidebar-primary-foreground" : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                   )}
                   tooltip={item.label}
-                  onClick={handleLinkClick} // Add onClick handler
+                  onClick={handleLinkClick} 
                 >
                   <a>
                     <item.icon className="w-5 h-5 mr-3" />
