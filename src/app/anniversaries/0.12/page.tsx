@@ -17,7 +17,7 @@ export default function AnniversaryZeroPointTwelvePage() {
             <Sparkles className="w-10 h-10 text-secondary ml-3 animate-ping" />
         </div>
         <p className="text-xl text-muted-foreground">
-          Celebrando un hito más en nuestra hermosa historia de amor.
+          Hasta lo imposible es posible
         </p>
       </header>
 
