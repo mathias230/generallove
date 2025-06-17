@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, Gift, Heart, Sparkles, Music2 } from 'lucide-react';
+import { ArrowLeft, Gift, Heart, Sparkles } from 'lucide-react';
 
 export default function AnniversaryZeroPointTwelvePage() {
   return (
@@ -61,41 +61,6 @@ export default function AnniversaryZeroPointTwelvePage() {
           </p>
         </CardContent>
       </Card>
-
-      <Card className="w-full max-w-3xl shadow-xl bg-card/80 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold text-primary flex items-center">
-            <Music2 className="w-8 h-8 mr-3 text-primary" />
-            Letras de Nuestras Canciones
-          </CardTitle>
-          <CardDescription className="text-muted-foreground">
-            Un espacio para esas melodías que cuentan nuestra historia.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div>
-            <h4 className="text-xl font-semibold text-secondary-foreground mb-2">Nombre de la Canción 1</h4>
-            <pre className="text-sm text-foreground whitespace-pre-wrap bg-muted/50 p-4 rounded-md shadow-inner font-mono">
-              Aquí iría la letra de la canción...
-              Puedes copiar y pegar desde Spotify o donde la tengas.
-              Asegúrate de que el formato sea legible.
-            </pre>
-          </div>
-          <div>
-            <h4 className="text-xl font-semibold text-secondary-foreground mb-2">Nombre de la Canción 2</h4>
-            <pre className="text-sm text-foreground whitespace-pre-wrap bg-muted/50 p-4 rounded-md shadow-inner font-mono">
-              Letra de otra canción especial...
-              Cada línea es un nuevo verso.
-            </pre>
-          </div>
-        </CardContent>
-        <CardFooter>
-            <p className="text-xs text-muted-foreground">
-                Puedes añadir más canciones editando este componente.
-            </p>
-        </CardFooter>
-      </Card>
-
 
       <Link href="/anniversaries" passHref>
         <Button variant="outline" size="lg" className="shadow-md hover:bg-accent hover:text-accent-foreground">
