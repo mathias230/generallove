@@ -39,25 +39,8 @@ export default function AnniversaryOnePointOnePage() {
           </div>
         </CardHeader>
         <CardContent className="p-8 space-y-6">
-          <div className="text-lg text-foreground leading-relaxed">
-            Mi amor, ha pasado un año y un mes. Cada día a tu lado es una nueva página en nuestra historia. Estoy emocionado por todo lo que hemos vivido y todo lo que nos queda por delante. Sigamos construyendo este amor tan bonito que tenemos.
-          </div>
-
-          <div className="p-6 bg-secondary/30 rounded-lg shadow-inner">
-            <h3 className="text-2xl font-semibold text-secondary-foreground mb-3 flex items-center">
-              <Heart className="w-6 h-6 mr-2 fill-current text-pink-500" />
-              Nuestros Proyectos a Futuro:
-            </h3>
-            <ul className="list-disc list-inside space-y-2 text-muted-foreground text-md">
-              <li>Seguir creciendo juntos.</li>
-              <li>Crear más recuerdos inolvidables.</li>
-              <li>Apoyarnos en nuestros sueños y metas.</li>
-              <li>Disfrutar cada pequeño momento.</li>
-            </ul>
-          </div>
-
           <p className="text-lg text-foreground leading-relaxed">
-            Gracias por este maravilloso tiempo. Eres mi mayor alegría y mi inspiración. ¡Por muchos más meses y años juntos! Te amo infinitamente.
+            Mi amor, ha pasado un año y un mes. Cada día a tu lado es una nueva página en nuestra historia. Estoy emocionado por todo lo que hemos vivido y todo lo que nos queda por delante. Sigamos construyendo este amor tan bonito que tenemos. ¡Por muchos más meses y años juntos! Te amo infinitamente.
           </p>
         </CardContent>
       </Card>
