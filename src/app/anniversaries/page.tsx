@@ -22,8 +22,14 @@ export default function AnniversariesPage() {
             0.12
           </Button>
         </Link>
+        {/* Large button linking to the 1.1 anniversary page */}
+        <Link href="/anniversaries/1.1" passHref>
+          <Button size="lg" className="text-xl px-12 py-8 shadow-lg transform hover:scale-105 transition-transform duration-300 flex items-center gap-2">
+            <Sparkles className="w-6 h-6" />
+            1.1
+          </Button>
+        </Link>
       </div>
     </div>
   );
 }
-
