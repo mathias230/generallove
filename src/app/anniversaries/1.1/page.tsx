@@ -40,7 +40,7 @@ export default function AnniversaryOnePointOnePage() {
         </CardHeader>
         <CardContent className="p-8 space-y-6">
           <p className="text-lg text-foreground leading-relaxed">
-            Mi amor, ha pasado un año y un mes. Cada día a tu lado es una nueva página en nuestra historia. Estoy emocionado por todo lo que hemos vivido y todo lo que nos queda por delante. Sigamos construyendo este amor tan bonito que tenemos. ¡Por muchos más meses y años juntos! Te amo infinitamente.
+            Mi princesita mi bebita ha pasado exactamente 1 año y 1 mes desde que nos hicimos novios, una relacion mas entre millones, solo que con una diferencia en la propuesta, chiquita pero que hizo que cambiara todo y sea unica, en vez de "quieres ser mi novia?" un "puedo ser tu novio?" y creo que eso cambio todo JASDJASJ PERO ME ALEGRO MUCHO DE QUE HAYA SIDO ASI, sinceramente queria que fuera algo diferente contigo, ño queria que fuera parecido a lo que ya he tenido, queria que fuera super super diferente, y por eso TOY MUYYY AFORTUNADO DE TENERTE MI BEBITA CONSENTIDA
           </p>
         </CardContent>
       </Card>
