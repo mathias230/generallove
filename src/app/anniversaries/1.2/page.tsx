@@ -34,7 +34,7 @@ export default function AnniversaryOnePointTwoPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
             <CardTitle className="text-4xl font-bold text-primary-foreground drop-shadow-lg">
-              Sumando Recuerdos Inolvidables
+              Un paso mas
             </CardTitle>
           </div>
         </CardHeader>
